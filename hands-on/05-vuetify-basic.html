@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>05 - Vuetify の基本</title>
+  <!-- Vuetify CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.4.9/dist/vuetify.min.css" rel="stylesheet">
+  <!-- Material Design Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.3.67/css/materialdesignicons.min.css" rel="stylesheet">
+  
+  <style>
+    .section-title {
+      background: linear-gradient(90deg, #1867c0 0%, #1976d2 100%);
+      color: white;
+      padding: 20px;
+      margin: 30px 0 20px 0;
+      border-radius: 8px;
+    }
+    .code-block {
+      background-color: #2c3e50;
+      color: #42b983;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+      margin: 15px 0;
+      font-family: 'Courier New', monospace;
+    }
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 20px 0;
+    }
+    .comparison-item {
+      padding: 15px;
+      border-radius: 8px;
+      border: 2px solid #ddd;
+    }
+    .vanilla {
+      border-color: #f7df1e;
+      background-color: #fffef0;
+    }
+    .vuetify {
+      border-color: #1976d2;
+      background-color: #e3f2fd;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <v-app>
+      <!-- ヘッダー -->
+      <v-app-bar color="primary" prominent>
+        <v-app-bar-title>
+          <v-icon icon="mdi-vuetify" size="large" class="mr-2"></v-icon>
+          Vuetify ハンズオン
+        </v-app-bar-title>
+      </v-app-bar>
+
+      <!-- メインコンテンツ -->
+      <v-main>
+        <v-container>
+          <!-- イントロダクション -->
+          <v-card class="mb-6">
+            <v-card-title class="text-h4">Vuetify の基本</v-card-title>
+            <v-card-text>
+              <p class="text-h6">Vuetify とは？</p>
+              <p>
+                Vuetify は Vue.js のための Material Design コンポーネントフレームワークです。
+                美しく、レスポンシブな UI を簡単に構築できます。
+              </p>
+              <v-chip class="ma-1" color="primary">Vue 3 対応</v-chip>
+              <v-chip class="ma-1" color="success">Material Design</v-chip>
+              <v-chip class="ma-1" color="info">豊富なコンポーネント</v-chip>
+              <v-chip class="ma-1" color="warning">レスポンシブ</v-chip>
+            </v-card-text>
+          </v-card>
+
+          <!-- セットアップ -->
+          <div class="section-title">
+            <h2 class="text-h4">1. Vuetify のセットアップ（CDN 方式）</h2>
+          </div>
+
+          <v-card class="mb-6">
+            <v-card-text>
+              <p class="text-h6">HTML に追加するコード</p>
+              <div class="code-block">
+&lt;!-- Vuetify CSS --&gt;
+&lt;link href="https://cdn.jsdelivr.net/npm/vuetify@3.4.9/dist/vuetify.min.css" rel="stylesheet"&gt;
+
+&lt;!-- Material Design Icons --&gt;
+&lt;link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.3.67/css/materialdesignicons.min.css" rel="stylesheet"&gt;
+
+&lt;!-- Vue 3 --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/vue@3.4.15/dist/vue.global.prod.js"&gt;&lt;/script&gt;
+
+&lt;!-- Vuetify --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/vuetify@3.4.9/dist/vuetify.min.js"&gt;&lt;/script&gt;
+              </div>
+
+              <v-alert type="info" class="mt-4">
+                <strong>重要:</strong> Vuetify アプリは <code>&lt;v-app&gt;</code> で囲む必要があります。
+              </v-alert>
+            </v-card-text>
+          </v-card>
+
+          <!-- ボタン -->
+          <div class="section-title">
+            <h2 class="text-h4">2. ボタン（v-btn）</h2>
+          </div>
+
+          <v-card class="mb-6">
+            <v-card-text>
+              <p class="text-h6">様々なボタンスタイル</p>
+              
+              <v-row class="mb-4">
+                <v-col cols="12">
+                  <h3>基本的なボタン</h3>
+                  <v-btn class="ma-2">デフォルト</v-btn>
+                  <v-btn color="primary" class="ma-2">Primary</v-btn>
+                  <v-btn color="secondary" class="ma-2">Secondary</v-btn>
+                  <v-btn color="success" class="ma-2">Success</v-btn>
+                  <v-btn color="error" class="ma-2">Error</v-btn>
+                  <v-btn color="warning" class="ma-2">Warning</v-btn>
+                  <v-btn color="info" class="ma-2">Info</v-btn>
+                </v-col>
+              </v-row>
+
+              <v-row class="mb-4">
+                <v-col cols="12">
+                  <h3>バリエーション</h3>
+                  <v-btn variant="elevated" color="primary" class="ma-2">Elevated</v-btn>
+                  <v-btn variant="flat" color="primary" class="ma-2">Flat</v-btn>
+                  <v-btn variant="outlined" color="primary" class="ma-2">Outlined</v-btn>
+                  <v-btn variant="text" color="primary" class="ma-2">Text</v-btn>
+                  <v-btn variant="tonal" color="primary" class="ma-2">Tonal</v-btn>
+                </v-col>
+              </v-row>
+
+              <v-row class="mb-4">
+                <v-col cols="12">
+                  <h3>サイズとアイコン</h3>
+                  <v-btn size="x-small" color="primary" class="ma-2">X-Small</v-btn>
+                  <v-btn size="small" color="primary" class="ma-2">Small</v-btn>
+                  <v-btn size="default" color="primary" class="ma-2">Default</v-btn>
+                  <v-btn size="large" color="primary" class="ma-2">Large</v-btn>
+                  <v-btn size="x-large" color="primary" class="ma-2">X-Large</v-btn>
+                  <br><br>
+                  <v-btn color="success" prepend-icon="mdi-check" class="ma-2">アイコン付き</v-btn>
+                  <v-btn color="error" append-icon="mdi-delete" class="ma-2">削除</v-btn>
+                  <v-btn icon="mdi-heart" color="error" class="ma-2"></v-btn>
+                </v-col>
+              </v-row>
+
+              <v-row>
+                <v-col cols="12">
+                  <h3>状態</h3>
+                  <v-btn color="primary" disabled class="ma-2">無効化</v-btn>
+                  <v-btn color="primary" loading class="ma-2">読み込み中</v-btn>
+                  <v-btn color="primary" @click="showSnackbar = true" class="ma-2">
+                    クリックしてね
+                  </v-btn>
+                </v-col>
+              </v-row>
+
+              <v-divider class="my-4"></v-divider>
+
+              <div class="code-block">
+&lt;v-btn color="primary"&gt;ボタン&lt;/v-btn&gt;
+&lt;v-btn variant="outlined" color="primary"&gt;アウトライン&lt;/v-btn&gt;
+&lt;v-btn prepend-icon="mdi-check" color="success"&gt;アイコン付き&lt;/v-btn&gt;
+&lt;v-btn icon="mdi-heart" color="error"&gt;&lt;/v-btn&gt;
+              </div>
+            </v-card-text>
+          </v-card>
+
+          <!-- テキストフィールド -->
+          <div class="section-title">
+            <h2 class="text-h4">3. テキストフィールド（v-text-field）</h2>
+          </div>
+
+          <v-card class="mb-6">
+            <v-card-text>
+              <v-row>
+                <v-col cols="12" md="6">
+                  <v-text-field
+                    v-model="textInput"
+                    label="基本的なテキストフィールド"
+                    placeholder="ここに入力..."
+                  ></v-text-field>
+                  <p>入力値: {{ textInput }}</p>
+                </v-col>
+
+                <v-col cols="12" md="6">
+                  <v-text-field
+                    v-model="emailInput"
+                    label="メールアドレス"
+                    type="email"
+                    prepend-icon="mdi-email"
+                    hint="例: user@example.com"
+                    persistent-hint
+                  ></v-text-field>
+                </v-col>
+
+                <v-col cols="12" md="6">
+                  <v-text-field
+                    v-model="passwordInput"
+                    label="パスワード"
+                    :type="showPassword ? 'text' : 'password'"
+                    :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                    @click:append-inner="showPassword = !showPassword"
+                  ></v-text-field>
+                </v-col>
+
+                <v-col cols="12" md="6">
+                  <v-text-field
+                    v-model="requiredInput"
+                    label="必須項目"
+                    :rules="[rules.required]"
+                    variant="outlined"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+
+              <v-divider class="my-4"></v-divider>
+
+              <div class="code-block">
+&lt;v-text-field
+  v-model="textInput"
+  label="ラベル"
+  placeholder="プレースホルダー"
+  prepend-icon="mdi-email"
+&gt;&lt;/v-text-field&gt;
+              </div>
+            </v-card-text>
+          </v-card>
+
+          <!-- カード -->
+          <div class="section-title">
+            <h2 class="text-h4">4. カード（v-card）</h2>
+          </div>
+
+          <v-row class="mb-6">
+            <v-col cols="12" md="4">
+              <v-card>
+                <v-card-title>シンプルなカード</v-card-title>
+                <v-card-text>
+                  これは基本的なカードです。テキストや画像を配置できます。
+                </v-card-text>
+                <v-card-actions>
+                  <v-btn color="primary">アクション</v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-col>
+
+            <v-col cols="12" md="4">
+              <v-card color="primary" dark>
+                <v-card-title>カラー付きカード</v-card-title>
+                <v-card-text>
+                  color 属性で背景色を変更できます。
+                </v-card-text>
+                <v-card-actions>
+                  <v-btn variant="outlined">詳細</v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-col>
+
+            <v-col cols="12" md="4">
+              <v-card>
+                <v-img
+                  src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                  height="200"
+                ></v-img>
+                <v-card-title>画像付きカード</v-card-title>
+                <v-card-text>
+                  v-img を使って画像を表示できます。
+                </v-card-text>
+                <v-card-actions>
+                  <v-btn color="success" prepend-icon="mdi-thumb-up">いいね</v-btn>
+                  <v-btn color="info" prepend-icon="mdi-share">共有</v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-col>
+          </v-row>
+
+          <!-- リスト -->
+          <div class="section-title">
+            <h2 class="text-h4">5. リスト（v-list）</h2>
+          </div>
+
+          <v-row class="mb-6">
+            <v-col cols="12" md="6">
+              <v-card>
+                <v-card-title>基本的なリスト</v-card-title>
+                <v-list>
+                  <v-list-item
+                    v-for="item in listItems"
+                    :key="item.id"
+                    :title="item.title"
+                    :subtitle="item.subtitle"
+                    :prepend-icon="item.icon"
+                  ></v-list-item>
+                </v-list>
+              </v-card>
+            </v-col>
+
+            <v-col cols="12" md="6">
+              <v-card>
+                <v-card-title>インタラクティブなリスト</v-card-title>
+                <v-list>
+                  <v-list-item
+                    v-for="item in actionItems"
+                    :key="item.id"
+                    :title="item.title"
+                    :prepend-icon="item.icon"
+                    @click="handleListClick(item)"
+                  ></v-list-item>
+                </v-list>
+              </v-card>
+            </v-col>
+          </v-row>
+
+          <!-- チップとアラート -->
+          <div class="section-title">
+            <h2 class="text-h4">6. チップとアラート</h2>
+          </div>
+
+          <v-card class="mb-6">
+            <v-card-text>
+              <p class="text-h6">チップ（v-chip）</p>
+              <v-chip class="ma-2" color="primary">Primary</v-chip>
+              <v-chip class="ma-2" color="success">Success</v-chip>
+              <v-chip class="ma-2" color="error">Error</v-chip>
+              <v-chip class="ma-2" color="warning">Warning</v-chip>
+              <v-chip class="ma-2" color="info">Info</v-chip>
+              <v-chip class="ma-2" prepend-icon="mdi-account">User</v-chip>
+              <v-chip class="ma-2" closable @click:close="console.log('閉じられました')">閉じられる</v-chip>
+
+              <v-divider class="my-4"></v-divider>
+
+              <p class="text-h6">アラート（v-alert）</p>
+              <v-alert type="success" class="mb-2">これは成功メッセージです</v-alert>
+              <v-alert type="info" class="mb-2">これは情報メッセージです</v-alert>
+              <v-alert type="warning" class="mb-2">これは警告メッセージです</v-alert>
+              <v-alert type="error" class="mb-2">これはエラーメッセージです</v-alert>
+              <v-alert type="info" closable class="mb-2">
+                <v-alert-title>閉じられるアラート</v-alert-title>
+                右上の×ボタンで閉じることができます。
+              </v-alert>
+            </v-card-text>
+          </v-card>
+
+          <!-- フォーム -->
+          <div class="section-title">
+            <h2 class="text-h4">7. 実践: ユーザー登録フォーム</h2>
+          </div>
+
+          <v-card class="mb-6">
+            <v-card-title>新規ユーザー登録</v-card-title>
+            <v-card-text>
+              <v-form ref="form" v-model="formValid">
+                <v-row>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="form.firstName"
+                      label="名"
+                      :rules="[rules.required]"
+                      prepend-icon="mdi-account"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="form.lastName"
+                      label="姓"
+                      :rules="[rules.required]"
+                      prepend-icon="mdi-account"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-text-field
+                      v-model="form.email"
+                      label="メールアドレス"
+                      type="email"
+                      :rules="[rules.required, rules.email]"
+                      prepend-icon="mdi-email"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-text-field
+                      v-model="form.password"
+                      label="パスワード"
+                      :type="showPassword ? 'text' : 'password'"
+                      :rules="[rules.required, rules.min]"
+                      :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                      @click:append-inner="showPassword = !showPassword"
+                      prepend-icon="mdi-lock"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-select
+                      v-model="form.role"
+                      :items="roles"
+                      label="役職"
+                      :rules="[rules.required]"
+                      prepend-icon="mdi-briefcase"
+                    ></v-select>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-checkbox
+                      v-model="form.agree"
+                      :rules="[rules.required]"
+                      label="利用規約に同意します"
+                    ></v-checkbox>
+                  </v-col>
+                </v-row>
+              </v-form>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn @click="resetForm">クリア</v-btn>
+              <v-btn color="primary" @click="submitForm" :disabled="!formValid">
+                登録する
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+
+          <!-- データテーブル -->
+          <div class="section-title">
+            <h2 class="text-h4">8. データテーブル（v-data-table）</h2>
+          </div>
+
+          <v-card class="mb-6">
+            <v-card-title>
+              ユーザー一覧
+              <v-spacer></v-spacer>
+              <v-text-field
+                v-model="search"
+                append-inner-icon="mdi-magnify"
+                label="検索"
+                single-line
+                hide-details
+                density="compact"
+                style="max-width: 300px;"
+              ></v-text-field>
+            </v-card-title>
+            <v-data-table
+              :headers="headers"
+              :items="users"
+              :search="search"
+              items-per-page="5"
+            >
+              <template v-slot:item.status="{ item }">
+                <v-chip :color="item.status === 'Active' ? 'success' : 'error'" size="small">
+                  {{ item.status }}
+                </v-chip>
+              </template>
+              <template v-slot:item.actions="{ item }">
+                <v-btn icon="mdi-pencil" size="small" variant="text" @click="editUser(item)"></v-btn>
+                <v-btn icon="mdi-delete" size="small" variant="text" color="error" @click="deleteUser(item)"></v-btn>
+              </template>
+            </v-data-table>
+          </v-card>
+
+          <!-- まとめ -->
+          <v-card class="mb-6" color="success" dark>
+            <v-card-title class="text-h4">📝 まとめ</v-card-title>
+            <v-card-text>
+              <p class="text-h6">今回学習した Vuetify の主要コンポーネント：</p>
+              <v-list bg-color="success">
+                <v-list-item prepend-icon="mdi-check">v-btn - 様々なスタイルのボタン</v-list-item>
+                <v-list-item prepend-icon="mdi-check">v-text-field - テキスト入力フィールド</v-list-item>
+                <v-list-item prepend-icon="mdi-check">v-card - カードレイアウト</v-list-item>
+                <v-list-item prepend-icon="mdi-check">v-list - リスト表示</v-list-item>
+                <v-list-item prepend-icon="mdi-check">v-chip - チップ（タグ）</v-list-item>
+                <v-list-item prepend-icon="mdi-check">v-alert - アラートメッセージ</v-list-item>
+                <v-list-item prepend-icon="mdi-check">v-form - フォーム</v-list-item>
+                <v-list-item prepend-icon="mdi-check">v-data-table - データテーブル</v-list-item>
+              </v-list>
+
+              <v-alert type="info" class="mt-4">
+                <strong>公式ドキュメント:</strong> 
+                <a href="https://vuetifyjs.com/" target="_blank" style="color: white; text-decoration: underline;">
+                  https://vuetifyjs.com/
+                </a>
+              </v-alert>
+            </v-card-text>
+          </v-card>
+
+          <!-- 演習問題 -->
+          <v-card color="warning">
+            <v-card-title class="text-h4">💪 演習問題</v-card-title>
+            <v-card-text>
+              <p class="text-h6">課題1: タスク管理アプリ</p>
+              <p>Vuetify を使ってタスク管理アプリを作成してください。</p>
+              <v-list>
+                <v-list-item>• v-text-field でタスク入力</v-list-item>
+                <v-list-item>• v-btn でタスク追加</v-list-item>
+                <v-list-item>• v-card でタスクを表示</v-list-item>
+                <v-list-item>• v-checkbox で完了/未完了を管理</v-list-item>
+                <v-list-item>• v-chip でステータス表示</v-list-item>
+              </v-list>
+
+              <v-divider class="my-4"></v-divider>
+
+              <p class="text-h6">課題2: 商品カタログ</p>
+              <p>商品一覧を表示するページを作成してください。</p>
+              <v-list>
+                <v-list-item>• v-card で商品カードを作成</v-list-item>
+                <v-list-item>• v-img で商品画像を表示</v-list-item>
+                <v-list-item>• v-btn で「カートに追加」ボタン</v-list-item>
+                <v-list-item>• v-chip で価格や在庫状況を表示</v-list-item>
+                <v-list-item>• v-row / v-col でグリッドレイアウト</v-list-item>
+              </v-list>
+            </v-card-text>
+          </v-card>
+
+        </v-container>
+      </v-main>
+
+      <!-- スナックバー -->
+      <v-snackbar v-model="showSnackbar" :timeout="3000" color="success">
+        ボタンがクリックされました！
+        <template v-slot:actions>
+          <v-btn variant="text" @click="showSnackbar = false">閉じる</v-btn>
+        </template>
+      </v-snackbar>
+    </v-app>
+  </div>
+
+  <!-- Vue 3 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.4.15/dist/vue.global.prod.js"></script>
+  <!-- Vuetify -->
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.4.9/dist/vuetify.min.js"></script>
+
+  <script>
+    const { createApp } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const vuetify = createVuetify({
+      theme: {
+        defaultTheme: 'light'
+      }
+    });
+
+    const app = createApp({
+      data() {
+        return {
+          // ボタン
+          showSnackbar: false,
+
+          // テキストフィールド
+          textInput: '',
+          emailInput: '',
+          passwordInput: '',
+          requiredInput: '',
+          showPassword: false,
+
+          // バリデーションルール
+          rules: {
+            required: value => !!value || '必須項目です',
+            email: value => {
+              const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              return pattern.test(value) || 'メールアドレスの形式が正しくありません';
+            },
+            min: value => value.length >= 8 || '8文字以上で入力してください'
+          },
+
+          // リスト
+          listItems: [
+            { id: 1, title: 'Vue.js', subtitle: 'JavaScriptフレームワーク', icon: 'mdi-vuejs' },
+            { id: 2, title: 'Vuetify', subtitle: 'UIコンポーネントライブラリ', icon: 'mdi-vuetify' },
+            { id: 3, title: 'JavaScript', subtitle: 'プログラミング言語', icon: 'mdi-language-javascript' }
+          ],
+          actionItems: [
+            { id: 1, title: 'ホーム', icon: 'mdi-home' },
+            { id: 2, title: '設定', icon: 'mdi-cog' },
+            { id: 3, title: 'ログアウト', icon: 'mdi-logout' }
+          ],
+
+          // フォーム
+          formValid: false,
+          form: {
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            role: null,
+            agree: false
+          },
+          roles: ['エンジニア', 'デザイナー', 'マネージャー', 'その他'],
+
+          // データテーブル
+          search: '',
+          headers: [
+            { title: 'ID', key: 'id', align: 'start' },
+            { title: '名前', key: 'name' },
+            { title: 'メール', key: 'email' },
+            { title: '役職', key: 'role' },
+            { title: 'ステータス', key: 'status' },
+            { title: 'アクション', key: 'actions', sortable: false }
+          ],
+          users: [
+            { id: 1, name: '山田太郎', email: 'yamada@example.com', role: 'エンジニア', status: 'Active' },
+            { id: 2, name: '佐藤花子', email: 'sato@example.com', role: 'デザイナー', status: 'Active' },
+            { id: 3, name: '鈴木一郎', email: 'suzuki@example.com', role: 'マネージャー', status: 'Inactive' },
+            { id: 4, name: '田中美咲', email: 'tanaka@example.com', role: 'エンジニア', status: 'Active' }
+          ]
+        };
+      },
+      methods: {
+        handleListClick(item) {
+          alert(`${item.title} がクリックされました`);
+        },
+        resetForm() {
+          this.form = {
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            role: null,
+            agree: false
+          };
+        },
+        submitForm() {
+          if (this.formValid) {
+            alert(`登録成功！\n名前: ${this.form.lastName} ${this.form.firstName}\nメール: ${this.form.email}`);
+            this.resetForm();
+          }
+        },
+        editUser(item) {
+          alert(`${item.name} を編集`);
+        },
+        deleteUser(item) {
+          if (confirm(`${item.name} を削除しますか？`)) {
+            const index = this.users.findIndex(u => u.id === item.id);
+            this.users.splice(index, 1);
+          }
+        }
+      }
+    });
+
+    app.use(vuetify).mount('#app');
+
+    console.log('=== Vuetify Application initialized ===');
+  </script>
+</body>
+</html>
+
+

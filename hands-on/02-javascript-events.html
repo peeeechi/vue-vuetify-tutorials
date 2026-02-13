@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02 - JavaScript とイベント処理</title>
+</head>
+<body>
+  
+  <h1>JavaScript とイベント処理</h1>
+  <p>このページでは、JavaScript を使って HTML 要素にインタラクティブな機能を追加する方法を学習します。</p>
+
+  <!-- ============================================
+       1. JavaScript の基本
+       ============================================ -->
+  <div class="example">
+    <h2>1. JavaScript とは？</h2>
+    <p>JavaScript は Web ページに動的な機能を追加するプログラミング言語です。</p>
+    <ul>
+      <li>ユーザーの操作に反応する</li>
+      <li>HTML 要素を動的に変更する</li>
+      <li>データの計算や処理を行う</li>
+      <li>サーバーと通信する</li>
+    </ul>
+  </div>
+
+  <!-- ============================================
+       2. DOM とは
+       ============================================ -->
+  <div class="example">
+    <h2>2. DOM (Document Object Model)</h2>
+    <p>DOM は HTML をプログラムから操作できるようにした仕組みです。</p>
+    
+    <h3>要素の取得方法</h3>
+    <ul>
+      <li><code>document.getElementById('id名')</code> - ID で要素を取得</li>
+      <li><code>document.querySelector('.class名')</code> - CSS セレクタで要素を取得</li>
+      <li><code>document.querySelectorAll('div')</code> - 複数の要素を取得</li>
+    </ul>
+  </div>
+
+  <!-- ============================================
+       3. ボタンクリックイベント
+       ============================================ -->
+  <div class="example">
+    <h2>3. ボタンクリックイベント</h2>
+    
+    <div class="demo">
+      <h3>デモ1: シンプルなボタン</h3>
+      <button id="btn-hello">クリックしてください</button>
+      <div class="output" id="output-hello">ここに結果が表示されます</div>
+    </div>
+
+    <h3>コード解説</h3>
+    <p>ボタンがクリックされたときに処理を実行する方法：</p>
+    <pre><code>// 1. ボタン要素を取得
+const button = document.getElementById('btn-hello');
+
+// 2. クリックイベントを設定
+button.addEventListener('click', () => {
+  // 3. クリックされたときの処理
+  alert('ボタンがクリックされました！');
+});</code></pre>
+  </div>
+
+  <!-- ============================================
+       4. テキストボックス入力
+       ============================================ -->
+  <div class="example">
+    <h2>4. テキストボックスの操作</h2>
+    
+    <div class="demo">
+      <h3>デモ2: テキスト入力と表示</h3>
+      <p>名前を入力してボタンをクリック：</p>
+      <input type="text" id="text-name" placeholder="お名前を入力">
+      <button id="btn-greeting">挨拶する</button>
+      <div class="output" id="output-greeting"></div>
+    </div>
+
+    <div class="demo">
+      <h3>デモ3: リアルタイム入力監視</h3>
+      <p>テキストを入力すると、リアルタイムで文字数をカウント：</p>
+      <textarea id="text-counter" rows="4" cols="50" placeholder="ここに文字を入力..."></textarea>
+      <div class="output" id="output-counter">文字数: 0</div>
+    </div>
+
+    <h3>コード解説</h3>
+    <ul>
+      <li><code>input.value</code> - テキストボックスの値を取得/設定</li>
+      <li><code>'input'</code> イベント - 入力の度に発火</li>
+      <li><code>'change'</code> イベント - フォーカスが外れたときに発火</li>
+    </ul>
+  </div>
+
+  <!-- ============================================
+       5. チェックボックス
+       ============================================ -->
+  <div class="example">
+    <h2>5. チェックボックスの操作</h2>
+    
+    <div class="demo">
+      <h3>デモ4: チェックボックスの状態取得</h3>
+      <label>
+        <input type="checkbox" id="check-agree">
+        利用規約に同意する
+      </label>
+      <br><br>
+      <button id="btn-submit">送信</button>
+      <div class="output" id="output-checkbox"></div>
+    </div>
+
+    <div class="demo">
+      <h3>デモ5: 複数のチェックボックス</h3>
+      <p>好きな果物を選択してください：</p>
+      <label><input type="checkbox" class="fruit" value="りんご"> りんご</label><br>
+      <label><input type="checkbox" class="fruit" value="バナナ"> バナナ</label><br>
+      <label><input type="checkbox" class="fruit" value="みかん"> みかん</label><br>
+      <label><input type="checkbox" class="fruit" value="ぶどう"> ぶどう</label><br>
+      <button id="btn-fruits">選択結果を表示</button>
+      <div class="output" id="output-fruits"></div>
+    </div>
+
+    <h3>コード解説</h3>
+    <ul>
+      <li><code>checkbox.checked</code> - チェック状態（true/false）</li>
+      <li><code>'change'</code> イベント - チェック状態が変わったときに発火</li>
+    </ul>
+  </div>
+
+  <!-- ============================================
+       6. ラジオボタン
+       ============================================ -->
+  <div class="example">
+    <h2>6. ラジオボタンの操作</h2>
+    
+    <div class="demo">
+      <h3>デモ6: ラジオボタン</h3>
+      <p>プログラミング経験年数を選択：</p>
+      <label><input type="radio" name="experience" value="初心者"> 初心者（1年未満）</label><br>
+      <label><input type="radio" name="experience" value="中級者"> 中級者（1-3年）</label><br>
+      <label><input type="radio" name="experience" value="上級者"> 上級者（3年以上）</label><br>
+      <button id="btn-experience">選択結果を表示</button>
+      <div class="output" id="output-experience"></div>
+    </div>
+
+    <h3>コード解説</h3>
+    <ul>
+      <li>同じ <code>name</code> 属性のラジオボタンは1つだけ選択可能</li>
+      <li><code>radio.checked</code> で選択状態を確認</li>
+    </ul>
+  </div>
+
+  <!-- ============================================
+       7. セレクトボックス
+       ============================================ -->
+  <div class="example">
+    <h2>7. セレクトボックス（ドロップダウン）</h2>
+    
+    <div class="demo">
+      <h3>デモ7: セレクトボックス</h3>
+      <label for="select-color">好きな色を選択：</label>
+      <select id="select-color">
+        <option value="">選択してください</option>
+        <option value="red">赤</option>
+        <option value="blue">青</option>
+        <option value="green">緑</option>
+        <option value="yellow">黄色</option>
+      </select>
+      <div class="output" id="output-color"></div>
+    </div>
+
+    <h3>コード解説</h3>
+    <ul>
+      <li><code>select.value</code> - 選択された値を取得</li>
+      <li><code>'change'</code> イベント - 選択が変わったときに発火</li>
+    </ul>
+  </div>
+
+  <!-- ============================================
+       8. 数値入力と計算
+       ============================================ -->
+  <div class="example">
+    <h2>8. 数値入力と計算</h2>
+    
+    <div class="demo">
+      <h3>デモ8: 簡単な計算機</h3>
+      <input type="number" id="num1" placeholder="数値1" value="0"> 
+      +
+      <input type="number" id="num2" placeholder="数値2" value="0">
+      <button id="btn-calc">計算する</button>
+      <div class="output" id="output-calc"></div>
+    </div>
+
+    <h3>コード解説</h3>
+    <ul>
+      <li><code>input.value</code> は文字列なので、数値に変換が必要</li>
+      <li><code>parseInt()</code> または <code>Number()</code> で数値に変換</li>
+    </ul>
+  </div>
+
+  <!-- ============================================
+       9. まとめ
+       ============================================ -->
+  <div class="card">
+    <h2>📝 まとめ</h2>
+    <p>今回学習した JavaScript のイベント処理：</p>
+    <ol>
+      <li><strong>getElementById()</strong> - 要素の取得</li>
+      <li><strong>addEventListener()</strong> - イベントの登録</li>
+      <li><strong>クリックイベント</strong> - ボタンクリックの検知</li>
+      <li><strong>input イベント</strong> - リアルタイムの入力監視</li>
+      <li><strong>change イベント</strong> - 値の変更を検知</li>
+      <li><strong>value プロパティ</strong> - 入力値の取得/設定</li>
+      <li><strong>checked プロパティ</strong> - チェック状態の取得/設定</li>
+    </ol>
+
+    <p><strong>次のステップ:</strong></p>
+    <p>次は Vue.js を使って、より簡単にインタラクティブな機能を実装する方法を学びます。</p>
+    <p><a href="03-vue-basic.html">03 - Vue.js の基本へ進む →</a></p>
+  </div>
+
+  <!-- ============================================
+       10. 演習問題
+       ============================================ -->
+  <div class="card">
+    <h2>💪 演習問題</h2>
+    
+    <h3>課題1: BMI計算機を作成</h3>
+    <p>身長（cm）と体重（kg）を入力して、BMIを計算するプログラムを作成してください。</p>
+    <ul>
+      <li>BMI = 体重(kg) ÷ (身長(m) × 身長(m))</li>
+      <li>結果に応じてメッセージを表示（例: 18.5未満→やせ、18.5-25→標準、など）</li>
+    </ul>
+
+    <h3>課題2: To-Doリスト</h3>
+    <p>テキストボックスに入力した内容をリストに追加するプログラムを作成してください。</p>
+    <ul>
+      <li>テキストボックスとボタンを配置</li>
+      <li>ボタンクリックでリストに項目を追加</li>
+      <li>（チャレンジ）削除ボタンも追加</li>
+    </ul>
+  </div>
+
+  <!-- ============================================
+       JavaScript コード
+       ============================================ -->
+  <script>
+    console.log('=== Script started ===');
+
+    // ============================================
+    // デモ1: シンプルなボタン
+    // ============================================
+    const btnHello = document.getElementById('btn-hello');
+    const outputHello = document.getElementById('output-hello');
+
+    if (btnHello) {
+      btnHello.addEventListener('click', () => {
+        outputHello.textContent = '👋 こんにちは！ボタンがクリックされました！';
+        console.log('Hello button clicked');
+      });
+    }
+
+    // ============================================
+    // デモ2: テキスト入力と表示
+    // ============================================
+    const textName = document.getElementById('text-name');
+    const btnGreeting = document.getElementById('btn-greeting');
+    const outputGreeting = document.getElementById('output-greeting');
+
+    if (btnGreeting && textName) {
+      btnGreeting.addEventListener('click', () => {
+        const name = textName.value;
+        if (name.trim() === '') {
+          outputGreeting.textContent = '⚠️ 名前を入力してください';
+        } else {
+          outputGreeting.textContent = `こんにちは、${name}さん！ようこそ！🎉`;
+        }
+        console.log('Input value:', name);
+      });
+    }
+
+    // ============================================
+    // デモ3: リアルタイム入力監視
+    // ============================================
+    const textCounter = document.getElementById('text-counter');
+    const outputCounter = document.getElementById('output-counter');
+
+    if (textCounter) {
+      textCounter.addEventListener('input', (e) => {
+        const length = e.target.value.length;
+        outputCounter.textContent = `文字数: ${length}`;
+        console.log('Character count:', length);
+      });
+    }
+
+    // ============================================
+    // デモ4: チェックボックスの状態取得
+    // ============================================
+    const checkAgree = document.getElementById('check-agree');
+    const btnSubmit = document.getElementById('btn-submit');
+    const outputCheckbox = document.getElementById('output-checkbox');
+
+    if (btnSubmit && checkAgree) {
+      btnSubmit.addEventListener('click', () => {
+        if (checkAgree.checked) {
+          outputCheckbox.textContent = '✅ 同意されました。送信できます！';
+        } else {
+          outputCheckbox.textContent = '⚠️ 利用規約に同意してください';
+        }
+        console.log('Checkbox checked:', checkAgree.checked);
+      });
+
+      // チェックボックスの状態変化も監視
+      checkAgree.addEventListener('change', (e) => {
+        console.log('Checkbox state changed:', e.target.checked);
+      });
+    }
+
+    // ============================================
+    // デモ5: 複数のチェックボックス
+    // ============================================
+    const btnFruits = document.getElementById('btn-fruits');
+    const outputFruits = document.getElementById('output-fruits');
+
+    if (btnFruits) {
+      btnFruits.addEventListener('click', () => {
+        const checkboxes = document.querySelectorAll('.fruit:checked');
+        const selected = Array.from(checkboxes).map(cb => cb.value);
+        
+        if (selected.length === 0) {
+          outputFruits.textContent = '何も選択されていません';
+        } else {
+          outputFruits.textContent = `選択された果物: ${selected.join(', ')} 🍎🍌🍊`;
+        }
+        console.log('Selected fruits:', selected);
+      });
+    }
+
+    // ============================================
+    // デモ6: ラジオボタン
+    // ============================================
+    const btnExperience = document.getElementById('btn-experience');
+    const outputExperience = document.getElementById('output-experience');
+
+    if (btnExperience) {
+      btnExperience.addEventListener('click', () => {
+        const selected = document.querySelector('input[name="experience"]:checked');
+        
+        if (selected) {
+          outputExperience.textContent = `選択されたレベル: ${selected.value} 🚀`;
+        } else {
+          outputExperience.textContent = '⚠️ いずれかを選択してください';
+        }
+        console.log('Experience level:', selected ? selected.value : 'none');
+      });
+    }
+
+    // ============================================
+    // デモ7: セレクトボックス
+    // ============================================
+    const selectColor = document.getElementById('select-color');
+    const outputColor = document.getElementById('output-color');
+
+    if (selectColor) {
+      selectColor.addEventListener('change', (e) => {
+        const color = e.target.value;
+        const colorNames = {
+          'red': '赤 🔴',
+          'blue': '青 🔵',
+          'green': '緑 🟢',
+          'yellow': '黄色 🟡'
+        };
+        
+        if (color) {
+          outputColor.textContent = `選択された色: ${colorNames[color]}`;
+        } else {
+          outputColor.textContent = '色を選択してください';
+        }
+        console.log('Selected color:', color);
+      });
+    }
+
+    // ============================================
+    // デモ8: 数値入力と計算
+    // ============================================
+    const num1 = document.getElementById('num1');
+    const num2 = document.getElementById('num2');
+    const btnCalc = document.getElementById('btn-calc');
+    const outputCalc = document.getElementById('output-calc');
+
+    if (btnCalc && num1 && num2) {
+      btnCalc.addEventListener('click', () => {
+        const value1 = Number(num1.value);
+        const value2 = Number(num2.value);
+        const result = value1 + value2;
+        
+        outputCalc.textContent = `計算結果: ${value1} + ${value2} = ${result} ✨`;
+        console.log('Calculation:', value1, '+', value2, '=', result);
+      });
+    }
+
+    console.log('=== All event listeners initialized ===');
+  </script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03 - Vue.js の基本</title>
+</head>
+<body>
+  
+  <h1>Vue.js の基本</h1>
+  <p>このページでは、Vue.js を使って簡単にインタラクティブな Web アプリケーションを作成する方法を学習します。</p>
+
+  <!-- ============================================
+       1. Vue.js とは
+       ============================================ -->
+  <div class="example">
+    <h2>1. Vue.js とは？</h2>
+    <p>Vue.js は、ユーザーインターフェース（UI）を構築するための JavaScript フレームワークです。</p>
+    
+    <h3>Vue.js の特徴</h3>
+    <ul>
+      <li><strong>学習しやすい</strong>: シンプルで直感的な API</li>
+      <li><strong>リアクティブ</strong>: データが変わると自動的に画面が更新される</li>
+      <li><strong>コンポーネント指向</strong>: 再利用可能な部品を作れる</li>
+      <li><strong>軽量</strong>: 高速で小さいファイルサイズ</li>
+    </ul>
+
+    <h3>Vanilla JS と Vue.js の比較</h3>
+    <div class="comparison">
+      <div class="vanilla-js">
+        <h4>Vanilla JavaScript</h4>
+        <ul>
+          <li>要素を手動で取得</li>
+          <li>イベントリスナーを手動で追加</li>
+          <li>DOM を手動で更新</li>
+          <li>コード量が多くなりがち</li>
+        </ul>
+      </div>
+      <div class="vue-js">
+        <h4>Vue.js</h4>
+        <ul>
+          <li>データと HTML を自動同期</li>
+          <li>宣言的にイベントを定義</li>
+          <li>データを変更すると自動更新</li>
+          <li>シンプルで読みやすいコード</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       2. Vue.js のセットアップ（CDN）
+       ============================================ -->
+  <div class="example">
+    <h2>2. Vue.js のセットアップ（CDN 方式）</h2>
+    <p>CDN（Content Delivery Network）を使うと、簡単に Vue.js を導入できます。</p>
+
+    <h3>HTML に Vue.js を追加</h3>
+    <pre><code>&lt;!-- Vue3 CDN --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/vue@3.4.15/dist/vue.global.prod.js"&gt;&lt;/script&gt;</code></pre>
+
+    <h3>基本的な Vue アプリケーションの作成</h3>
+    <pre><code>&lt;div id="app"&gt;
+  {{ message }}
+&lt;/div&gt;
+
+&lt;script&gt;
+  const { createApp } = Vue;
+  
+  createApp({
+    data() {
+      return {
+        message: 'Hello Vue!'
+      }
+    }
+  }).mount('#app');
+&lt;/script&gt;</code></pre>
+  </div>
+
+  <!-- ============================================
+       3. v-model: 双方向データバインディング
+       ============================================ -->
+  <div class="example">
+    <h2>3. v-model: 双方向データバインディング</h2>
+    <p><code>v-model</code> を使うと、入力欄とデータを自動的に同期できます。</p>
+
+    <div id="app-vmodel" class="demo">
+      <h3>デモ1: v-model の基本</h3>
+      <p>名前を入力してください：</p>
+      <input type="text" v-model="name" placeholder="お名前">
+      <div class="output">
+        入力された名前: {{ name }}
+      </div>
+      <p v-if="name">こんにちは、{{ name }}さん！👋</p>
+    </div>
+
+    <h3>コード解説</h3>
+    <pre><code>&lt;div id="app-vmodel"&gt;
+  &lt;input type="text" <span class="highlight">v-model="name"</span>&gt;
+  &lt;div&gt;入力された名前: {{ name }}&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  createApp({
+    data() {
+      return {
+        name: ''  // v-model で自動同期される
+      }
+    }
+  }).mount('#app-vmodel');
+&lt;/script&gt;</code></pre>
+
+    <p><strong>ポイント:</strong></p>
+    <ul>
+      <li><code>v-model</code> で input と data を双方向バインディング</li>
+      <li>入力すると自動的に data が更新され、画面にも反映される</li>
+      <li><code>{{ name }}</code> で変数の値を表示（マスタッシュ構文）</li>
+    </ul>
+  </div>
+
+  <!-- ============================================
+       4. v-bind: 属性のバインディング
+       ============================================ -->
+  <div class="example">
+    <h2>4. v-bind: 属性のバインディング</h2>
+    <p><code>v-bind</code> を使うと、HTML 属性にデータをバインドできます。</p>
+
+    <div id="app-vbind" class="demo">
+      <h3>デモ2: v-bind の使い方</h3>
+      
+      <div>
+        <label>URL を入力：</label>
+        <input type="text" v-model="url" placeholder="https://vuejs.org">
+        <br><br>
+        <a v-bind:href="url" target="_blank">{{ url || 'リンクはこちら' }}</a>
+      </div>
+
+      <div>
+        <label>画像 URL を入力：</label>
+        <input type="text" v-model="imageUrl" placeholder="画像のURL">
+        <br><br>
+        <img v-bind:src="imageUrl" v-bind:alt="imageAlt">
+        <small v-if="!imageUrl">画像URLを入力すると表示されます</small>
+      </div>
+    </div>
+
+    <h3>コード解説</h3>
+    <pre><code>&lt;a <span class="highlight">v-bind:href="url"</span>&gt;リンク&lt;/a&gt;
+&lt;img <span class="highlight">v-bind:src="imageUrl"</span>&gt;
+
+&lt;!-- 省略記法: : を使う --&gt;
+&lt;a <span class="highlight">:href="url"</span>&gt;リンク&lt;/a&gt;
+&lt;img <span class="highlight">:src="imageUrl"</span>&gt;</code></pre>
+
+    <p><strong>ポイント:</strong></p>
+    <ul>
+      <li><code>v-bind:属性名="データ"</code> で属性にデータをバインド</li>
+      <li><code>:</code> は <code>v-bind:</code> の省略形</li>
+      <li>動的に属性を変更できる</li>
+    </ul>
+  </div>
+
+  <!-- ============================================
+       5. イベントハンドリング
+       ============================================ -->
+  <div class="example">
+    <h2>5. イベントハンドリング（@click など）</h2>
+    <p>Vue.js では <code>@イベント名</code> でイベントを簡単に扱えます。</p>
+
+    <div id="app-events" class="demo">
+      <h3>デモ3: クリックイベント</h3>
+      <button @click="count++">クリック回数: {{ count }}</button>
+      <button @click="resetCount">リセット</button>
+      
+      <div class="output">
+        <p v-if="count === 0">まだクリックされていません</p>
+        <p v-else-if="count < 5">あと{{ 5 - count }}回クリックしてください</p>
+        <p v-else>5回以上クリックされました！🎉</p>
+      </div>
+    </div>
+
+    <div id="app-input-event" class="demo">
+      <h3>デモ4: 入力イベント</h3>
+      <input type="text" v-model="message" @input="handleInput" placeholder="何か入力...">
+      <div class="output">
+        文字数: {{ message.length }}
+      </div>
+    </div>
+
+    <h3>コード解説</h3>
+    <pre><code>&lt;button <span class="highlight">@click="count++"</span>&gt;カウント&lt;/button&gt;
+&lt;button <span class="highlight">@click="resetCount"</span>&gt;リセット&lt;/button&gt;
+&lt;input <span class="highlight">@input="handleInput"</span>&gt;
+
+&lt;script&gt;
+  createApp({
+    data() {
+      return {
+        count: 0
+      }
+    },
+    methods: {
+      resetCount() {
+        this.count = 0;
+      },
+      handleInput(e) {
+        console.log('Input:', e.target.value);
+      }
+    }
+  }).mount('#app-events');
+&lt;/script&gt;</code></pre>
+
+    <p><strong>主なイベント:</strong></p>
+    <ul>
+      <li><code>@click</code> - クリックイベント</li>
+      <li><code>@input</code> - 入力イベント</li>
+      <li><code>@change</code> - 変更イベント</li>
+      <li><code>@submit</code> - フォーム送信イベント</li>
+      <li><code>@keyup</code> - キーボードイベント</li>
+    </ul>
+  </div>
+
+  <!-- ============================================
+       6. チェックボックスと v-model
+       ============================================ -->
+  <div class="example">
+    <h2>6. チェックボックスと v-model</h2>
+
+    <div id="app-checkbox" class="demo">
+      <h3>デモ5: チェックボックス</h3>
+      <label>
+        <input type="checkbox" v-model="agreed">
+        利用規約に同意する
+      </label>
+      <div class="output">
+        同意状態: {{ agreed ? '✅ 同意済み' : '❌ 未同意' }}
+      </div>
+      <button @click="submit" :disabled="!agreed">送信</button>
+    </div>
+
+    <h3>コード解説</h3>
+    <pre><code>&lt;input type="checkbox" <span class="highlight">v-model="agreed"</span>&gt;
+&lt;button <span class="highlight">:disabled="!agreed"</span>&gt;送信&lt;/button&gt;
+
+// agreed が true の時だけボタンが有効になる</code></pre>
+  </div>
+
+  <!-- ============================================
+       7. Vanilla JS と Vue.js の比較実例
+       ============================================ -->
+  <div class="example">
+    <h2>7. Vanilla JS と Vue.js の比較</h2>
+    <p>同じ機能を Vanilla JS と Vue.js で実装した場合の違いを見てみましょう。</p>
+
+    <h3>機能: テキストボックスに入力した内容をボタンでアラート表示</h3>
+
+    <div class="comparison">
+      <div class="vanilla-js">
+        <h4>Vanilla JavaScript</h4>
+        <pre><code>// HTML
+&lt;input id="text" type="text"&gt;
+&lt;button id="btn"&gt;表示&lt;/button&gt;
+
+// JavaScript
+const button = document.getElementById('btn');
+const textbox = document.getElementById('text');
+
+button.addEventListener('click', () => {
+  const value = textbox.value;
+  alert(value);
+});</code></pre>
+        <p>コード行数: <strong>約10行</strong></p>
+      </div>
+
+      <div class="vue-js">
+        <h4>Vue.js</h4>
+        <pre><code>// HTML
+&lt;div id="app"&gt;
+  &lt;input v-model="text"&gt;
+  &lt;button @click="show"&gt;表示&lt;/button&gt;
+&lt;/div&gt;
+
+// JavaScript
+createApp({
+  data() {
+    return { text: '' }
+  },
+  methods: {
+    show() { alert(this.text); }
+  }
+}).mount('#app');</code></pre>
+        <p>コード行数: <strong>約7行</strong></p>
+      </div>
+    </div>
+
+    <p><strong>Vue.js の利点:</strong></p>
+    <ul>
+      <li>DOM 操作が不要（<code>getElementById</code> などを書かない）</li>
+      <li><code>v-model</code> で自動的にデータが同期される</li>
+      <li>コードが宣言的でわかりやすい</li>
+      <li>保守性が高い</li>
+    </ul>
+  </div>
+
+  <!-- ============================================
+       8. まとめ
+       ============================================ -->
+  <div class="card">
+    <h2>📝 まとめ</h2>
+    <p>今回学習した Vue.js の基本機能：</p>
+    <ol>
+      <li><strong>v-model</strong> - 双方向データバインディング（入力値とデータを自動同期）</li>
+      <li><strong>v-bind / :</strong> - 属性のバインディング（href, src などを動的に設定）</li>
+      <li><strong>@イベント名</strong> - イベントハンドリング（@click, @input など）</li>
+      <li><strong>{{ 変数名 }}</strong> - マスタッシュ構文（データを表示）</li>
+      <li><strong>methods</strong> - メソッドの定義（関数を定義）</li>
+      <li><strong>data()</strong> - リアクティブなデータの定義</li>
+    </ol>
+
+    <p><strong>次のステップ:</strong></p>
+    <p>次は Vue.js の応用機能（v-if, v-for など）を学習します。</p>
+    <p><a href="04-vue-advanced.html">04 - Vue.js の応用へ進む →</a></p>
+  </div>
+
+  <!-- ============================================
+       9. 演習問題
+       ============================================ -->
+  <div class="card">
+    <h2>💪 演習問題</h2>
+    
+    <h3>課題1: 簡単な計算機</h3>
+    <p>2つの数値を入力して、足し算の結果を表示するアプリを Vue.js で作成してください。</p>
+    <ul>
+      <li>v-model を使って数値を取得</li>
+      <li>リアルタイムで計算結果を表示</li>
+      <li>（ヒント）<code>Number()</code> で文字列を数値に変換</li>
+    </ul>
+
+    <h3>課題2: お名前フォーム</h3>
+    <p>姓と名を入力すると、フルネームが表示されるアプリを作成してください。</p>
+    <ul>
+      <li>2つの input (姓と名)</li>
+      <li>v-model で値を取得</li>
+      <li>{{ lastName }} {{ firstName }} でフルネーム表示</li>
+    </ul>
+  </div>
+
+  <!-- ============================================
+       Vue.js CDN
+       ============================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.4.15/dist/vue.global.prod.js"></script>
+
+  <!-- ============================================
+       Vue.js コード
+       ============================================ -->
+  <script>
+    const { createApp } = Vue;
+
+    // デモ1: v-model
+    createApp({
+      data() {
+        return {
+          name: ''
+        };
+      }
+    }).mount('#app-vmodel');
+
+    // デモ2: v-bind
+    createApp({
+      data() {
+        return {
+          url: 'https://vuejs.org/',
+          imageUrl: '',
+          imageAlt: 'サンプル画像'
+        };
+      }
+    }).mount('#app-vbind');
+
+    // デモ3: イベント
+    createApp({
+      data() {
+        return {
+          count: 0
+        };
+      },
+      methods: {
+        resetCount() {
+          this.count = 0;
+        }
+      }
+    }).mount('#app-events');
+
+    // デモ4: 入力イベント
+    createApp({
+      data() {
+        return {
+          message: ''
+        };
+      },
+      methods: {
+        handleInput(e) {
+          console.log('Input value:', e.target.value);
+        }
+      }
+    }).mount('#app-input-event');
+
+    // デモ5: チェックボックス
+    createApp({
+      data() {
+        return {
+          agreed: false
+        };
+      },
+      methods: {
+        submit() {
+          if (this.agreed) {
+            alert('送信しました！');
+          }
+        }
+      }
+    }).mount('#app-checkbox');
+
+    console.log('=== Vue.js initialized ===');
+  </script>
+
+</body>
+</html>
+
+

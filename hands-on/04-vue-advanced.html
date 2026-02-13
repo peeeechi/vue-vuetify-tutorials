@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>04 - Vue.js の応用</title>
+</head>
+<body>
+  
+  <h1>Vue.js の応用</h1>
+  <p>このページでは、Vue.js の条件分岐（v-if）、ループ（v-for）、その他の便利な機能を学習します。</p>
+
+  <!-- ============================================
+       1. v-if: 条件分岐
+       ============================================ -->
+  <div class="example">
+    <h2>1. v-if / v-else-if / v-else: 条件分岐</h2>
+    <p><code>v-if</code> を使うと、条件に応じて要素の表示/非表示を制御できます。</p>
+
+    <div id="app-vif" class="demo">
+      <h3>デモ1: 年齢判定</h3>
+      <label>年齢を入力してください：</label>
+      <input type="number" v-model.number="age" placeholder="年齢">
+      
+      <div>
+        <div v-if="age === null || age === ''">
+          年齢を入力してください
+        </div>
+        <div v-else-if="age < 0">
+          <div class="alert alert-danger">❌ 正しい年齢を入力してください</div>
+        </div>
+        <div v-else-if="age < 18">
+          <div class="alert alert-warning">⚠️ あなたは未成年です（{{ age }}歳）</div>
+        </div>
+        <div v-else-if="age < 65">
+          <div class="alert alert-success">✅ あなたは成人です（{{ age }}歳）</div>
+        </div>
+        <div v-else>
+          <div class="alert alert-info">🎉 あなたはシニアです（{{ age }}歳）</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>コード解説</h3>
+      <pre><code>&lt;div <span>v-if="age &lt; 18"</span>&gt;
+  未成年です
+&lt;/div&gt;
+&lt;div <span>v-else-if="age &lt; 65"</span>&gt;
+  成人です
+&lt;/div&gt;
+&lt;div <span>v-else</span>&gt;
+  シニアです
+&lt;/div&gt;</code></pre>
+
+    <p><strong>ポイント:</strong></p>
+    <ul>
+      <li><code>v-if</code>: 条件が true の時だけ要素を表示</li>
+      <li><code>v-else-if</code>: 追加の条件分岐</li>
+      <li><code>v-else</code>: どの条件にも当てはまらない場合</li>
+      <li>条件が false の場合、DOM から完全に削除される</li>
+    </ul>
+  </div>
+
+  <!-- ============================================
+       2. v-show
+       ============================================ -->
+  <div class="example">
+    <h2>2. v-show: 表示/非表示の切り替え</h2>
+    <p><code>v-show</code> は CSS で表示/非表示を切り替えます。</p>
+
+    <div id="app-vshow" class="demo">
+      <h3>デモ2: v-if と v-show の違い</h3>
+      <button @click="isVisible = !isVisible">表示切替</button>
+      
+      <div>
+        <div class="card">
+          <h4>v-if を使用（{{ isVisible ? '表示中' : '非表示' }}）</h4>
+          <div v-if="isVisible" class="alert alert-success">
+            これは v-if で制御されています。非表示の時は DOM から削除されます。
+          </div>
+        </div>
+
+        <div class="card">
+          <h4>v-show を使用（{{ isVisible ? '表示中' : '非表示' }}）</h4>
+          <div v-show="isVisible" class="alert alert-info">
+            これは v-show で制御されています。非表示の時も DOM に残ります（display: none）。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>v-if と v-show の違い</h3>
+    <table>
+      <tr>
+        <th></th>
+        <th>v-if</th>
+        <th>v-show</th>
+      </tr>
+      <tr>
+        <td>レンダリング</td>
+        <td>条件が false の時は DOM から削除</td>
+        <td>常に DOM に存在（display: none で非表示）</td>
+      </tr>
+      <tr>
+        <td>切り替えコスト</td>
+        <td>高い（DOM の作成/削除）</td>
+        <td>低い（CSS のみ）</td>
+      </tr>
+      <tr>
+        <td>使い分け</td>
+        <td>頻繁に切り替わらない場合</td>
+        <td>頻繁に切り替わる場合</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ============================================
+       3. v-for: ループ処理
+       ============================================ -->
+  <div class="example">
+    <h2>3. v-for: ループ処理</h2>
+    <p><code>v-for</code> を使うと、配列やオブジェクトをループして表示できます。</p>
+
+    <div id="app-vfor" class="demo">
+      <h3>デモ3: 配列のループ</h3>
+      
+      <h4>果物リスト</h4>
+      <ul>
+        <li v-for="(fruit, index) in fruits" :key="index">
+          {{ index + 1 }}. {{ fruit }}
+        </li>
+      </ul>
+
+      <h4>ユーザーリスト</h4>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>名前</th>
+          <th>年齢</th>
+          <th>役職</th>
+        </tr>
+        <tr v-for="user in users" :key="user.id">
+          <td>{{ user.id }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.age }}</td>
+          <td><span class="badge badge-primary">{{ user.role }}</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <h3>コード解説</h3>
+      <pre><code>&lt;!-- 配列のループ --&gt;
+&lt;li <span>v-for="(item, index) in items"</span> <span>:key="index"</span>&gt;
+  {{ index }}: {{ item }}
+&lt;/li&gt;
+
+&lt;!-- オブジェクト配列のループ --&gt;
+&lt;div <span>v-for="user in users"</span> <span>:key="user.id"</span>&gt;
+  {{ user.name }} - {{ user.age }}歳
+&lt;/div&gt;</code></pre>
+
+    <p><strong>ポイント:</strong></p>
+    <ul>
+      <li><code>v-for="item in items"</code>: 配列をループ</li>
+      <li><code>v-for="(item, index) in items"</code>: インデックスも取得</li>
+      <li><code>:key</code> は必須（Vue が要素を識別するため）</li>
+      <li><code>:key</code> にはユニークな値を指定</li>
+    </ul>
+  </div>
+
+  <!-- ============================================
+       4. v-for と v-if の組み合わせ
+       ============================================ -->
+  <div class="example">
+    <h2>4. v-for と v-if の組み合わせ</h2>
+
+    <div id="app-filter" class="demo">
+      <h3>デモ4: フィルタリング機能</h3>
+      
+      <div>
+        <button @click="filter = 'all'" :class="{ 'badge-primary': filter === 'all' }">
+          全て ({{ tasks.length }})
+        </button>
+        <button @click="filter = 'active'" :class="{ 'badge-warning': filter === 'active' }">
+          未完了 ({{ activeTasks.length }})
+        </button>
+        <button @click="filter = 'completed'" :class="{ 'badge-info': filter === 'completed' }">
+          完了 ({{ completedTasks.length }})
+        </button>
+      </div>
+
+      <div>
+        <div v-for="task in filteredTasks" :key="task.id" class="list-item" :class="{ completed: task.done }">
+          <span>{{ task.title }}</span>
+          <span v-if="task.done" class="badge badge-info">完了</span>
+          <span v-else class="badge badge-warning">未完了</span>
+        </div>
+        <div v-if="filteredTasks.length === 0" class="alert alert-warning">
+          該当するタスクがありません
+        </div>
+      </div>
+    </div>
+
+    <h3>computed プロパティを使ったフィルタリング</h3>
+    <pre><code>computed: {
+  filteredTasks() {
+    if (this.filter === 'active') {
+      return this.tasks.filter(task => !task.done);
+    } else if (this.filter === 'completed') {
+      return this.tasks.filter(task => task.done);
+    }
+    return this.tasks;
+  }
+}</code></pre>
+  </div>
+
+  <!-- ============================================
+       5. To-Do リストの実装
+       ============================================ -->
+  <div class="example">
+    <h2>5. 実践: To-Do リストアプリ</h2>
+
+    <div id="app-todo" class="demo">
+      <h3>📝 To-Do リスト</h3>
+      
+      <div>
+        <input 
+          type="text" 
+          v-model="newTodo" 
+          @keyup.enter="addTodo"
+          placeholder="新しいタスクを入力..."
+        >
+        <button @click="addTodo" :disabled="!newTodo.trim()">追加</button>
+      </div>
+
+      <div v-if="todos.length === 0" class="alert alert-info">
+        タスクがありません。上から追加してください。
+      </div>
+
+      <div v-for="(todo, index) in todos" :key="todo.id" class="list-item" :class="{ completed: todo.completed }">
+        <div>
+          <input 
+            type="checkbox" 
+            v-model="todo.completed"
+          >
+          <span>{{ todo.text }}</span>
+        </div>
+        <button @click="removeTodo(index)" class="btn-small btn-danger">削除</button>
+      </div>
+
+      <div v-if="todos.length > 0">
+        <strong>統計:</strong> 
+        全タスク: {{ todos.length }} | 
+        完了: {{ completedCount }} | 
+        未完了: {{ activeCount }}
+      </div>
+    </div>
+
+    <h3>完全なコード</h3>
+    <pre><code>&lt;div id="app-todo"&gt;
+  &lt;input v-model="newTodo" @keyup.enter="addTodo"&gt;
+  &lt;button @click="addTodo"&gt;追加&lt;/button&gt;
+
+  &lt;div v-for="(todo, index) in todos" :key="todo.id"&gt;
+    &lt;input type="checkbox" v-model="todo.completed"&gt;
+    &lt;span&gt;{{ todo.text }}&lt;/span&gt;
+    &lt;button @click="removeTodo(index)"&gt;削除&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+createApp({
+  data() {
+    return {
+      newTodo: '',
+      todos: []
+    };
+  },
+  computed: {
+    completedCount() {
+      return this.todos.filter(t => t.completed).length;
+    },
+    activeCount() {
+      return this.todos.filter(t => !t.completed).length;
+    }
+  },
+  methods: {
+    addTodo() {
+      if (this.newTodo.trim()) {
+        this.todos.push({
+          id: Date.now(),
+          text: this.newTodo,
+          completed: false
+        });
+        this.newTodo = '';
+      }
+    },
+    removeTodo(index) {
+      this.todos.splice(index, 1);
+    }
+  }
+}).mount('#app-todo');
+&lt;/script&gt;</code></pre>
+  </div>
+
+  <!-- ============================================
+       6. まとめ
+       ============================================ -->
+  <div class="card">
+    <h2>📝 まとめ</h2>
+    <p>今回学習した Vue.js の応用機能：</p>
+    <ol>
+      <li><strong>v-if / v-else-if / v-else</strong> - 条件分岐（DOM から削除）</li>
+      <li><strong>v-show</strong> - 表示/非表示の切り替え（CSS のみ）</li>
+      <li><strong>v-for</strong> - 配列やオブジェクトのループ処理</li>
+      <li><strong>:key</strong> - v-for で必須のユニーク識別子</li>
+      <li><strong>computed</strong> - 算出プロパティ（動的な計算値）</li>
+      <li><strong>@keyup.enter</strong> - キーボードイベント修飾子</li>
+      <li><strong>filter / map</strong> - 配列の操作メソッド</li>
+    </ol>
+
+    <p><strong>次のステップ:</strong></p>
+    <p>次は Vuetify を使って、美しい UI を簡単に作成する方法を学びます。</p>
+    <p><a href="05-vuetify-basic.html">05 - Vuetify の基本へ進む →</a></p>
+  </div>
+
+  <!-- ============================================
+       7. 演習問題
+       ============================================ -->
+  <div class="card">
+    <h2>💪 演習問題</h2>
+    
+    <h3>課題1: 買い物リスト</h3>
+    <p>商品名と価格を入力して、買い物リストを作成してください。</p>
+    <ul>
+      <li>商品名と価格の入力フォーム</li>
+      <li>v-for でリスト表示</li>
+      <li>合計金額を computed で計算</li>
+      <li>削除ボタン</li>
+    </ul>
+
+    <h3>課題2: 学生成績管理</h3>
+    <p>学生の名前と点数を管理するアプリを作成してください。</p>
+    <ul>
+      <li>学生の追加機能</li>
+      <li>v-for でリスト表示</li>
+      <li>平均点を computed で計算</li>
+      <li>v-if で合格/不合格を表示（60点以上が合格）</li>
+    </ul>
+
+    <h3>課題3: フィルター機能付きリスト</h3>
+    <p>検索ボックスでリストをフィルタリングする機能を実装してください。</p>
+    <ul>
+      <li>検索ボックス（v-model）</li>
+      <li>computed でフィルタリングされたリストを返す</li>
+      <li>v-for でフィルター結果を表示</li>
+    </ul>
+  </div>
+
+  <!-- ============================================
+       Vue.js CDN
+       ============================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.4.15/dist/vue.global.prod.js"></script>
+
+  <!-- ============================================
+       Vue.js コード
+       ============================================ -->
+  <script>
+    const { createApp } = Vue;
+
+    // デモ1: v-if
+    createApp({
+      data() {
+        return {
+          age: null
+        };
+      }
+    }).mount('#app-vif');
+
+    // デモ2: v-show
+    createApp({
+      data() {
+        return {
+          isVisible: true
+        };
+      }
+    }).mount('#app-vshow');
+
+    // デモ3: v-for
+    createApp({
+      data() {
+        return {
+          fruits: ['りんご', 'バナナ', 'オレンジ', 'ぶどう', 'いちご'],
+          users: [
+            { id: 1, name: '山田太郎', age: 28, role: 'エンジニア' },
+            { id: 2, name: '佐藤花子', age: 25, role: 'デザイナー' },
+            { id: 3, name: '鈴木一郎', age: 35, role: 'マネージャー' },
+            { id: 4, name: '田中美咲', age: 22, role: 'エンジニア' }
+          ]
+        };
+      }
+    }).mount('#app-vfor');
+
+    // デモ4: フィルタリング
+    createApp({
+      data() {
+        return {
+          filter: 'all',
+          tasks: [
+            { id: 1, title: 'Vue.js を学習する', done: true },
+            { id: 2, title: 'Vuetify を学習する', done: false },
+            { id: 3, title: 'プロジェクトを作成する', done: false },
+            { id: 4, title: '環境構築をする', done: true },
+            { id: 5, title: 'デプロイする', done: false }
+          ]
+        };
+      },
+      computed: {
+        filteredTasks() {
+          if (this.filter === 'active') {
+            return this.tasks.filter(task => !task.done);
+          } else if (this.filter === 'completed') {
+            return this.tasks.filter(task => task.done);
+          }
+          return this.tasks;
+        },
+        activeTasks() {
+          return this.tasks.filter(task => !task.done);
+        },
+        completedTasks() {
+          return this.tasks.filter(task => task.done);
+        }
+      }
+    }).mount('#app-filter');
+
+    // デモ5: To-Do リスト
+    createApp({
+      data() {
+        return {
+          newTodo: '',
+          todos: []
+        };
+      },
+      computed: {
+        completedCount() {
+          return this.todos.filter(t => t.completed).length;
+        },
+        activeCount() {
+          return this.todos.filter(t => !t.completed).length;
+        }
+      },
+      methods: {
+        addTodo() {
+          if (this.newTodo.trim()) {
+            this.todos.push({
+              id: Date.now(),
+              text: this.newTodo,
+              completed: false
+            });
+            this.newTodo = '';
+          }
+        },
+        removeTodo(index) {
+          this.todos.splice(index, 1);
+        }
+      }
+    }).mount('#app-todo');
+
+    console.log('=== Vue.js Advanced Features initialized ===');
+  </script>
+
+</body>
+</html>
+
+

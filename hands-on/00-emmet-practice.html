@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emmet 練習ページ</title>
+</head>
+<body>
+  <div class="container">
+    <h1>🚀 Emmet 練習ページ</h1>
+    <p>このページで Emmet の省略記法を実際に試してみましょう！</p>
+
+    <div class="hint">
+      <strong>💡 使い方:</strong> VSCode でこのファイルを開き、下の練習エリアに Emmet コードを入力して <kbd>Tab</kbd> キーを押してください。
+    </div>
+
+    <!-- ============================================
+         レベル1: 基本
+         ============================================ -->
+    <div class="challenge">
+      <h2>レベル1: 基本のキ 🌱</h2>
+
+      <h3><span class="step">練習1</span>シンプルなタグ</h3>
+      <div class="emmet-code">div [Tab]</div>
+      <p><strong>目標:</strong> <code>&lt;div&gt;&lt;/div&gt;</code> を生成</p>
+      <div class="practice-area">
+        <!-- ここに div [Tab] を試してみよう -->
+      </div>
+
+      <h3><span class="step">練習2</span>クラス名付き</h3>
+      <div class="emmet-code">div.container [Tab]</div>
+      <p><strong>目標:</strong> <code>&lt;div class="container"&gt;&lt;/div&gt;</code> を生成</p>
+      <div class="practice-area">
+        <!-- ここに div.container [Tab] を試してみよう -->
+      </div>
+
+      <h3><span class="step">練習3</span>ID 付き</h3>
+      <div class="emmet-code">div#app [Tab]</div>
+      <p><strong>目標:</strong> <code>&lt;div id="app"&gt;&lt;/div&gt;</code> を生成</p>
+      <div class="practice-area">
+        <!-- ここに div#app [Tab] を試してみよう -->
+      </div>
+    </div>
+
+    <!-- ============================================
+         レベル2: 入れ子と繰り返し
+         ============================================ -->
+    <div class="challenge">
+      <h2>レベル2: 入れ子と繰り返し 🌿</h2>
+
+      <h3><span class="step">練習4</span>子要素を作る</h3>
+      <div class="emmet-code">ul>li [Tab]</div>
+      <p><strong>目標:</strong> ul の中に li を生成</p>
+      <div class="practice-area">
+        <!-- ここに ul>li [Tab] を試してみよう -->
+      </div>
+
+      <h3><span class="step">練習5</span>繰り返し</h3>
+      <div class="emmet-code">ul>li*5 [Tab]</div>
+      <p><strong>目標:</strong> 5つの li を持つ ul を生成</p>
+      <div class="practice-area">
+        <!-- ここに ul>li*5 [Tab] を試してみよう -->
+      </div>
+
+      <h3><span class="step">練習6</span>テキスト付き繰り返し</h3>
+      <div class="emmet-code">ul>li{Item $}*5 [Tab]</div>
+      <p><strong>目標:</strong> "Item 1", "Item 2"... というテキストを持つ5つの li を生成</p>
+      <div class="practice-area">
+        <!-- ここに ul>li{Item $}*5 [Tab] を試してみよう -->
+      </div>
+    </div>
+
+    <!-- ============================================
+         レベル3: 複雑な構造
+         ============================================ -->
+    <div class="challenge">
+      <h2>レベル3: 複雑な構造 🌳</h2>
+
+      <h3><span class="step">練習7</span>テーブルを作る</h3>
+      <div class="emmet-code">table>tr*3>td*4 [Tab]</div>
+      <p><strong>目標:</strong> 3行4列のテーブルを生成</p>
+      <div class="practice-area">
+        <!-- ここに table>tr*3>td*4 [Tab] を試してみよう -->
+      </div>
+
+      <h3><span class="step">練習8</span>ナビゲーションメニュー</h3>
+      <div class="emmet-code">nav>ul.menu>li.menu-item*4>a[href="#"]{メニュー$} [Tab]</div>
+      <p><strong>目標:</strong> ナビゲーションメニューを生成</p>
+      <div class="practice-area">
+        <!-- ここに nav>ul.menu>li.menu-item*4>a[href="#"]{メニュー$} [Tab] を試してみよう -->
+      </div>
+
+      <h3><span class="step">練習9</span>カード型レイアウト</h3>
+      <div class="emmet-code">div.container>(div.card>h3.title{カードタイトル$}+p.content{これはカード$の内容です})*3 [Tab]</div>
+      <p><strong>目標:</strong> 3つのカードを持つコンテナを生成</p>
+      <div class="practice-area">
+        <!-- ここに Emmet コードを試してみよう -->
+      </div>
+    </div>
+
+    <!-- ============================================
+         レベル4: 実践チャレンジ
+         ============================================ -->
+    <div class="challenge">
+      <h2>レベル4: 実践チャレンジ 🏆</h2>
+
+      <h3><span class="step">チャレンジ1</span>フォームを作る</h3>
+      <p><strong>お題:</strong> 名前、メール、パスワードの入力欄と送信ボタンを持つフォームを Emmet で作成</p>
+      <div class="hint">
+        <strong>ヒント:</strong> <code>form>(input[type="text"][placeholder="名前"]+ ...)</code>
+      </div>
+      <div class="practice-area">
+        <!-- ここに挑戦してみよう！ -->
+      </div>
+
+      <h3><span class="step">チャレンジ2</span>商品リスト</h3>
+      <p><strong>お題:</strong> 画像、タイトル、価格を含む3つの商品カードを作成</p>
+      <div class="hint">
+        <strong>ヒント:</strong> <code>div.products>(div.product>img[src="product$.jpg"]+h4{商品$}+p.price{¥1,000})*3</code>
+      </div>
+      <div class="practice-area">
+        <!-- ここに挑戦してみよう！ -->
+      </div>
+
+      <h3><span class="step">チャレンジ3</span>完全なセクション</h3>
+      <p><strong>お題:</strong> ヘッダー、メインコンテンツ、フッターを持つ完全なページ構造を作成</p>
+      <div class="emmet-code">
+header>h1{サイト名}+nav>ul>li*3>a[href="#"]{リンク$}
+^^main>section*3>h2{セクション$}+p{内容}
+^^footer>p{©2026 サイト名}
+      </div>
+      <div class="practice-area">
+        <!-- ここに挑戦してみよう！ -->
+      </div>
+    </div>
+
+    <!-- ============================================
+         Emmet チートシート
+         ============================================ -->
+    <div class="challenge">
+      <h2>📋 Emmet チートシート</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>記号</th>
+            <th>意味</th>
+            <th>例</th>
+            <th>結果</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>&gt;</code></td>
+            <td>子要素</td>
+            <td><code>div>p</code></td>
+            <td>div の中に p</td>
+          </tr>
+          <tr>
+            <td><code>+</code></td>
+            <td>兄弟要素</td>
+            <td><code>div+p</code></td>
+            <td>div と p を並列</td>
+          </tr>
+          <tr>
+            <td><code>^</code></td>
+            <td>親に戻る</td>
+            <td><code>div>p>span^div</code></td>
+            <td>span の後、最初の div の階層に戻る</td>
+          </tr>
+          <tr>
+            <td><code>*</code></td>
+            <td>繰り返し</td>
+            <td><code>li*5</code></td>
+            <td>li を5つ</td>
+          </tr>
+          <tr>
+            <td><code>()</code></td>
+            <td>グループ化</td>
+            <td><code>(div>p)*2</code></td>
+            <td>div>p のセットを2つ</td>
+          </tr>
+          <tr>
+            <td><code>.</code></td>
+            <td>クラス</td>
+            <td><code>div.card</code></td>
+            <td>class="card"</td>
+          </tr>
+          <tr>
+            <td><code>#</code></td>
+            <td>ID</td>
+            <td><code>div#app</code></td>
+            <td>id="app"</td>
+          </tr>
+          <tr>
+            <td><code>[]</code></td>
+            <td>属性</td>
+            <td><code>a[href="#"]</code></td>
+            <td>href 属性付き</td>
+          </tr>
+          <tr>
+            <td><code>{}</code></td>
+            <td>テキスト</td>
+            <td><code>p{Hello}</code></td>
+            <td>テキスト入り</td>
+          </tr>
+          <tr>
+            <td><code>$</code></td>
+            <td>連番</td>
+            <td><code>li{Item $}*3</code></td>
+            <td>Item 1, Item 2, Item 3</td>
+          </tr>
+          <tr>
+            <td><code>$$</code></td>
+            <td>ゼロ埋め連番</td>
+            <td><code>img[src="img$$.jpg"]*3</code></td>
+            <td>img01.jpg, img02.jpg, img03.jpg</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ============================================
+         よく使うスニペット集
+         ============================================ -->
+    <div class="challenge">
+      <h2>🎯 よく使う Emmet スニペット集</h2>
+
+      <h3>1. HTML5 テンプレート</h3>
+      <div class="emmet-code">! [Tab]</div>
+
+      <h3>2. リンク付きナビゲーション</h3>
+      <div class="emmet-code">nav>ul>li*5>a[href="#"]{メニュー$}</div>
+
+      <h3>3. カード型レイアウト</h3>
+      <div class="emmet-code">div.cards>(div.card>img[src="$.jpg"]+h3{タイトル$}+p{説明文})*4</div>
+
+      <h3>4. フォーム</h3>
+      <div class="emmet-code">form>input:text+input:email+input:password+button:submit</div>
+
+      <h3>5. データテーブル（ヘッダー付き）</h3>
+      <div class="emmet-code">table>thead>tr>th{列$}*4^^tbody>tr*3>td{データ}*4</div>
+
+      <h3>6. ブログ記事構造</h3>
+      <div class="emmet-code">article>header>h2{記事タイトル}+p.meta{投稿日}^^section>p*3{本文}^^footer>a{続きを読む}</div>
+    </div>
+
+    <!-- ============================================
+         まとめ
+         ============================================ -->
+    <div class="completed">
+      <h2>✅ 完了したら</h2>
+      <p>Emmet をマスターすると、HTML のコーディング速度が<strong>10倍</strong>になります！</p>
+      <p>日々の開発で積極的に使って、体に染み込ませましょう。</p>
+      <ul>
+        <li>✨ 単純な構造から複雑な構造まで一瞬で生成</li>
+        <li>⚡ タイピング量が劇的に減少</li>
+        <li>🎯 タイプミスが減る</li>
+        <li>😊 コーディングが楽しくなる</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>
+
+

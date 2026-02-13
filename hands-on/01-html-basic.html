@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01 - 基本的なHTML要素</title>
+</head>
+<body>
+  <!-- ============================================
+       1. 見出しタグ (Header Tags)
+       ============================================ -->
+  <h1>基本的なHTML要素の学習</h1>
+  <p>このページでは、Webページを作成する上で基本となるHTML要素を学習します。</p>
+
+  <!-- ============================================
+       2. 見出しの階層構造
+       ============================================ -->
+  <div class="example">
+    <h2>見出しタグ（h1 〜 h6）</h2>
+    <p>見出しタグは h1 から h6 まで6段階あります。h1 が最も大きく、h6 が最も小さいです。</p>
+    
+    <h1>これは h1 タグです（最も大きい）</h1>
+    <h2>これは h2 タグです</h2>
+    <h3>これは h3 タグです</h3>
+    <h4>これは h4 タグです</h4>
+    <h5>これは h5 タグです</h5>
+    <h6>これは h6 タグです（最も小さい）</h6>
+    
+    <p><strong>ポイント:</strong> h1 はページに1つだけ使用し、階層構造を意識しましょう。</p>
+  </div>
+
+  <hr>
+
+  <!-- ============================================
+       3. リスト：順序なしリスト (ul)
+       ============================================ -->
+  <div class="example">
+    <h2>順序なしリスト（ul - Unordered List）</h2>
+    <p>箇条書きで順序が重要でない項目を表示します。</p>
+    
+    <h3>買い物リスト</h3>
+    <ul>
+      <li>牛乳</li>
+      <li>卵</li>
+      <li>パン</li>
+      <li>野菜</li>
+      <li>果物</li>
+    </ul>
+
+    <h3>好きなプログラミング言語</h3>
+    <ul>
+      <li>JavaScript</li>
+      <li>Python</li>
+      <li>Java</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <!-- ============================================
+       4. リスト：順序付きリスト (ol)
+       ============================================ -->
+  <div class="example">
+    <h2>順序付きリスト（ol - Ordered List）</h2>
+    <p>番号付きで順序が重要な項目を表示します。</p>
+    
+    <h3>コーヒーの淹れ方</h3>
+    <ol>
+      <li>お湯を沸かす（90〜95度が最適）</li>
+      <li>フィルターをセットする</li>
+      <li>コーヒー粉を入れる（10gあたり150mlが目安）</li>
+      <li>ゆっくりお湯を注ぐ</li>
+      <li>抽出が終わるまで待つ</li>
+      <li>完成！</li>
+    </ol>
+
+    <h3>Webアプリケーション開発の流れ</h3>
+    <ol>
+      <li>要件定義</li>
+      <li>設計</li>
+      <li>実装（コーディング）</li>
+      <li>テスト</li>
+      <li>デプロイ</li>
+    </ol>
+  </div>
+
+  <hr>
+
+  <!-- ============================================
+       5. テーブル (table)
+       ============================================ -->
+  <div class="example">
+    <h2>テーブル（table）</h2>
+    <p>データを表形式で整理して表示します。</p>
+    
+    <h3>社員情報</h3>
+    <table>
+      <tr>
+        <th>名前</th>
+        <th>部署</th>
+        <th>役職</th>
+        <th>入社年</th>
+      </tr>
+      <tr>
+        <td>山田太郎</td>
+        <td>開発部</td>
+        <td>エンジニア</td>
+        <td>2020年</td>
+      </tr>
+      <tr>
+        <td>佐藤花子</td>
+        <td>デザイン部</td>
+        <td>デザイナー</td>
+        <td>2019年</td>
+      </tr>
+      <tr>
+        <td>鈴木一郎</td>
+        <td>営業部</td>
+        <td>マネージャー</td>
+        <td>2015年</td>
+      </tr>
+    </table>
+
+    <h3>プログラミング言語の比較</h3>
+    <table>
+      <tr>
+        <th>言語</th>
+        <th>用途</th>
+        <th>難易度</th>
+      </tr>
+      <tr>
+        <td>JavaScript</td>
+        <td>Web開発</td>
+        <td>中</td>
+      </tr>
+      <tr>
+        <td>Python</td>
+        <td>AI/機械学習</td>
+        <td>易</td>
+      </tr>
+      <tr>
+        <td>Java</td>
+        <td>業務システム</td>
+        <td>難</td>
+      </tr>
+    </table>
+
+    <p><strong>テーブルの構成要素:</strong></p>
+    <ul>
+      <li><code>&lt;table&gt;</code>: テーブル全体を囲む</li>
+      <li><code>&lt;tr&gt;</code>: 行（Table Row）</li>
+      <li><code>&lt;th&gt;</code>: 見出しセル（Table Header）</li>
+      <li><code>&lt;td&gt;</code>: データセル（Table Data）</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <!-- ============================================
+       6. 水平線 (hr)
+       ============================================ -->
+  <div class="example">
+    <h2>水平線（hr - Horizontal Rule）</h2>
+    <p>セクションを区切るための横線を表示します。</p>
+    
+    <p>上のセクション</p>
+    <hr>
+    <p>下のセクション</p>
+    
+    <p><strong>使い方:</strong> <code>&lt;hr&gt;</code> タグを書くだけです。閉じタグは不要です。</p>
+  </div>
+
+  <hr>
+
+  <!-- ============================================
+       7. div（ブロック要素）
+       ============================================ -->
+  <div class="example">
+    <h2>div要素（コンテナ）</h2>
+    <p>div は「division（区分）」の略で、複数の要素をグループ化するために使用します。</p>
+    
+    <h3>カード型レイアウトの例</h3>
+    
+    <div class="card">
+      <h4>製品A</h4>
+      <p>価格: 1,000円</p>
+      <p>在庫: あり</p>
+    </div>
+
+    <div class="card">
+      <h4>製品B</h4>
+      <p>価格: 2,000円</p>
+      <p>在庫: 残りわずか</p>
+    </div>
+
+    <div class="card">
+      <h4>製品C</h4>
+      <p>価格: 3,000円</p>
+      <p>在庫: なし</p>
+    </div>
+
+    <p><strong>ポイント:</strong></p>
+    <ul>
+      <li>div 自体には意味はなく、スタイリングやレイアウトのために使用</li>
+      <li>ブロックレベル要素（改行される）</li>
+      <li>CSSでスタイルを適用できる</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <!-- ============================================
+       8. リンク (a)
+       ============================================ -->
+  <div class="example">
+    <h2>リンク（a - Anchor）</h2>
+    <p>別のページやWebサイトへのリンクを作成します。</p>
+    
+    <h3>外部サイトへのリンク</h3>
+    <ul>
+      <li><a href="https://vuejs.org/" target="_blank">Vue.js 公式サイト</a></li>
+      <li><a href="https://vuetifyjs.com/" target="_blank">Vuetify 公式サイト</a></li>
+      <li><a href="https://developer.mozilla.org/" target="_blank">MDN Web Docs</a></li>
+    </ul>
+
+    <h3>ページ内リンク</h3>
+    <p><a href="#top">ページの先頭に戻る</a></p>
+
+    <h3>メールリンク</h3>
+    <p><a href="mailto:example@example.com">お問い合わせ</a></p>
+
+    <p><strong>主な属性:</strong></p>
+    <ul>
+      <li><code>href</code>: リンク先のURL</li>
+      <li><code>target="_blank"</code>: 新しいタブで開く</li>
+      <li><code>title</code>: ホバー時のツールチップ</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <!-- ============================================
+       9. Emmet（エメット）で高速コーディング
+       ============================================ -->
+  <div class="example">
+    <h2>Emmet で HTML を高速に書く</h2>
+    <p>Emmet は HTML を省略記法で素早く書けるツールです。VSCode に標準搭載されています！</p>
+
+    <h3>基本的な使い方</h3>
+    <p>Emmet の記法を入力して <kbd>Tab</kbd> キーを押すと、HTML に展開されます。</p>
+
+    <div class="card">
+      <h4>🚀 よく使う Emmet 記法</h4>
+      
+      <table border="1">
+        <tr>
+          <th style="width: 30%;">Emmet 記法</th>
+          <th style="width: 70%;">展開結果</th>
+        </tr>
+        <tr>
+          <td><code>div</code> + Tab</td>
+          <td><code>&lt;div&gt;&lt;/div&gt;</code></td>
+        </tr>
+        <tr>
+          <td><code>div.container</code> + Tab</td>
+          <td><code>&lt;div class="container"&gt;&lt;/div&gt;</code></td>
+        </tr>
+        <tr>
+          <td><code>div#app</code> + Tab</td>
+          <td><code>&lt;div id="app"&gt;&lt;/div&gt;</code></td>
+        </tr>
+        <tr>
+          <td><code>ul>li*3</code> + Tab</td>
+          <td>
+            <code>&lt;ul&gt;<br>
+            &nbsp;&nbsp;&lt;li&gt;&lt;/li&gt;<br>
+            &nbsp;&nbsp;&lt;li&gt;&lt;/li&gt;<br>
+            &nbsp;&nbsp;&lt;li&gt;&lt;/li&gt;<br>
+            &lt;/ul&gt;</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>table>tr*3>td*2</code> + Tab</td>
+          <td>3行2列のテーブルが一瞬で生成！</td>
+        </tr>
+        <tr>
+          <td><code>a[href="#"]{リンク}</code> + Tab</td>
+          <td><code>&lt;a href="#"&gt;リンク&lt;/a&gt;</code></td>
+        </tr>
+        <tr>
+          <td><code>!</code> + Tab</td>
+          <td>HTML5 の基本テンプレート</td>
+        </tr>
+      </table>
+    </div>
+
+    <h3>実践例：このページの要素を Emmet で書くと</h3>
+    
+    <div class="card">
+      <h4>例1: 見出しのセクション</h4>
+      <p><strong>通常の書き方:</strong></p>
+      <pre><code>&lt;h1&gt;タイトル&lt;/h1&gt;
+&lt;h2&gt;サブタイトル&lt;/h2&gt;
+&lt;h3&gt;小見出し&lt;/h3&gt;</code></pre>
+
+      <p><strong>Emmet で書くと:</strong></p>
+      <pre><code>h1{タイトル}+h2{サブタイトル}+h3{小見出し} [Tab]</code></pre>
+      <p>→ 一行で3つの見出しが生成されます！</p>
+    </div>
+
+    <div class="card">
+      <h4>例2: リストの作成</h4>
+      <p><strong>通常の書き方:</strong></p>
+      <pre><code>&lt;ul&gt;
+  &lt;li&gt;Item 1&lt;/li&gt;
+  &lt;li&gt;Item 2&lt;/li&gt;
+  &lt;li&gt;Item 3&lt;/li&gt;
+  &lt;li&gt;Item 4&lt;/li&gt;
+  &lt;li&gt;Item 5&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+      <p><strong>Emmet で書くと:</strong></p>
+      <pre><code>ul>li{Item $}*5 [Tab]</code></pre>
+      <p>→ 一瞬で5つのリストアイテムが生成！（$ は連番）</p>
+    </div>
+
+    <div class="card">
+      <h4>例3: テーブルの作成</h4>
+      <p><strong>Emmet で書くと:</strong></p>
+      <pre><code>table>tr>th{見出し$}*3^^tr*2>td{データ$-$}*3 [Tab]</code></pre>
+      <p>→ 見出し行 + 2行3列のテーブルが一瞬で完成！</p>
+    </div>
+
+    <div class="card">
+      <h4>例4: ナビゲーションメニュー</h4>
+      <p><strong>Emmet で書くと:</strong></p>
+      <pre><code>nav>ul.menu>li.menu-item*4>a[href="#"]{メニュー$} [Tab]</code></pre>
+      <p>→ クラス名付きの4つのメニューが一発で生成！</p>
+    </div>
+
+    <h3>Emmet 記法の記号まとめ</h3>
+    <table border="1">
+      <tr>
+        <th>記号</th>
+        <th>意味</th>
+        <th>例</th>
+      </tr>
+      <tr>
+        <td><code>&gt;</code></td>
+        <td>子要素（入れ子）</td>
+        <td><code>div>p</code> → div の中に p</td>
+      </tr>
+      <tr>
+        <td><code>+</code></td>
+        <td>兄弟要素（並列）</td>
+        <td><code>div+p</code> → div と p を並べて</td>
+      </tr>
+      <tr>
+        <td><code>*</code></td>
+        <td>繰り返し</td>
+        <td><code>li*5</code> → li を5つ</td>
+      </tr>
+      <tr>
+        <td><code>.</code></td>
+        <td>クラス名</td>
+        <td><code>div.card</code> → class="card"</td>
+      </tr>
+      <tr>
+        <td><code>#</code></td>
+        <td>ID 名</td>
+        <td><code>div#app</code> → id="app"</td>
+      </tr>
+      <tr>
+        <td><code>[]</code></td>
+        <td>属性</td>
+        <td><code>a[href="#"]</code> → href 属性付き</td>
+      </tr>
+      <tr>
+        <td><code>{}</code></td>
+        <td>テキスト</td>
+        <td><code>p{Hello}</code> → テキスト入り</td>
+      </tr>
+      <tr>
+        <td><code>$</code></td>
+        <td>連番</td>
+        <td><code>li{Item $}*3</code> → Item 1, 2, 3</td>
+      </tr>
+      <tr>
+        <td><code>^</code></td>
+        <td>親要素に戻る</td>
+        <td><code>div>p>span^div</code> → div 階層に戻る</td>
+      </tr>
+    </table>
+
+    <div class="card">
+      <h4>💡 Emmet を使うメリット</h4>
+      <ul>
+        <li>⚡ <strong>コーディング速度が10倍速くなる</strong></li>
+        <li>🎯 <strong>タイプミスが減る</strong></li>
+        <li>📝 <strong>複雑な構造も簡単に作成</strong></li>
+        <li>🚀 <strong>生産性が劇的に向上</strong></li>
+        <li>😊 <strong>コーディングが楽しくなる</strong></li>
+      </ul>
+      <p><strong>ヒント:</strong> VSCode で Emmet を使う時は、入力後に <kbd>Tab</kbd> キーを押すだけ！</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ============================================
+       10. まとめ
+       ============================================ -->
+  <div class="card">
+    <h2>📝 まとめ</h2>
+    <p>今回学習した基本的なHTML要素：</p>
+    <ol>
+      <li><strong>見出し（h1〜h6）</strong>: コンテンツの階層構造を作る</li>
+      <li><strong>ul</strong>: 順序なしリスト（箇条書き）</li>
+      <li><strong>ol</strong>: 順序付きリスト（番号付き）</li>
+      <li><strong>table</strong>: データを表形式で表示</li>
+      <li><strong>hr</strong>: セクションを区切る横線</li>
+      <li><strong>div</strong>: 要素をグループ化するコンテナ</li>
+      <li><strong>a</strong>: リンクを作成</li>
+      <li><strong>Emmet</strong>: HTML を高速に書く省略記法</li>
+    </ol>
+
+    <p><strong>次のステップ:</strong></p>
+    <p>次は JavaScript を使ってページにインタラクティブな機能を追加する方法を学びます。</p>
+    <p><a href="02-javascript-events.html">02 - JavaScript とイベント処理へ進む →</a></p>
+  </div>
+
+  <hr>
+
+  <!-- ============================================
+       11. 演習問題
+       ============================================ -->
+  <div class="card">
+    <h2>💪 演習問題</h2>
+    <p>以下の課題に挑戦してみましょう！</p>
+    
+    <h3>課題1: 自己紹介ページを作成</h3>
+    <p>以下の要素を使って自己紹介ページを作成してください：</p>
+    <ul>
+      <li>h1 タグで名前</li>
+      <li>h2 タグで各セクション（趣味、スキル、経歴など）</li>
+      <li>ul で趣味のリスト</li>
+      <li>ol で経歴（時系列）</li>
+      <li>table でスキルレベル</li>
+      <li>hr でセクションを区切る</li>
+      <li>a タグでSNSやポートフォリオへのリンク</li>
+    </ul>
+
+    <h3>課題2: 好きなレシピを紹介</h3>
+    <p>以下を含むレシピページを作成してください：</p>
+    <ul>
+      <li>料理名（h1）</li>
+      <li>材料リスト（ul）</li>
+      <li>作り方（ol）</li>
+      <li>栄養成分表（table）</li>
+    </ul>
+
+    <h3>課題3: Emmet を使って高速コーディング 🚀</h3>
+    <p>以下の構造を <strong>Emmet を使って</strong>作成してください：</p>
+    <ul>
+      <li><code>table>tr>th{項目$}*4^^tr*3>td{データ$-$}*4</code> で4列3行のテーブル</li>
+      <li><code>nav>ul.menu>li.item*5>a[href="#"]{メニュー$}</code> でナビゲーションメニュー</li>
+      <li><code>div.card>(h3.title{カード$}+p.description{説明文})*3</code> で3つのカード</li>
+    </ul>
+    <p><strong>ヒント:</strong> VSCode で記法を入力したら <kbd>Tab</kbd> キーを押すだけ！</p>
+  </div>
+
+</body>
+</html>
+
